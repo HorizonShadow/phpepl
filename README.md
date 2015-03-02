@@ -39,3 +39,9 @@ Happy PHPing ;-)
 ---
 
 Credits to Mr. Joel Kemp (@mrjoelkemp) for the original PHP eval script.
+
+###Screenshots
+
+![enter image description here](http://i.imgur.com/I9YTWX3.png "stuff")
+
+![enter image description here](http://i.imgur.com/ttxC8nH.png "filtering on the sidebar")
