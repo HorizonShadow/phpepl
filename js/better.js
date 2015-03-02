@@ -188,11 +188,11 @@ Snip.remove = function (index) {
 Snip.UI.init = function () {
 	this.createUI();
 	Snip.DB.get('snips').forEach(this.list.bind(Snip.UI));
-	this.open(Snip.DB.get('lastActive'));
+	this.open(Snip.DB.get('lastActive'), 'fresh');
 };
-Snip.UI.open = function (index) {
+Snip.UI.open = function (index, fresh) {
 	if (index === null) return;
-	Snip.save(Snip.DB.get('lastActive'), window.editor.getValue());
+	if (!fresh) Snip.save(Snip.DB.get('lastActive'), window.editor.getValue());
 	var snip = Snip.DB.store.snips[index];
 	this.currSnip.textContent = snip.name;
 	this.currSnip.dataset.snipindex = index;
