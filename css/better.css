@@ -1,0 +1,132 @@
+body {
+	margin: 0px;
+}
+.wrapper{
+	display: flex;
+	height: 100%;
+	min-height: 100vh;
+}
+.code {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+.code > div.CodeMirror {
+	flex-grow: 1;
+	height: auto;
+}
+.error-gutter {
+	background-color: red;
+}
+#new-snip-btn {
+	position: absolute;
+	color: white;
+	text-decoration: none;
+	right: 0px;
+	font: bolder x-large 'Source Sans Pro', 'sans-serif';
+	width: 30px;
+	text-align: center;
+}
+.snippets {
+	position: relative;
+	min-width: 200px;
+	background-color: rgb(45,45,45);
+	color: white;
+	font: bolder 13px/18px 'Lato', 'sans-serif';
+}
+.current-snippet {
+	text-align: center;
+}
+.current-snippet.editing {
+	font-weight: normal;
+	color: #111;
+	background-color: white;
+}
+#snip-search {
+	height: 2.5em;
+	width: 100%;
+	box-sizing: border-box;
+	border: 0px;
+	outline: 0px;
+	margin: 0px;
+	font: normal 15px/18px 'Source Sans Pro';
+	padding: 1em;
+}
+.snippet-list {
+	list-style: none;
+	padding-left: 0px;
+}
+.snippet-list li {
+	padding: 0em;
+	position: relative;
+}
+.snippet-list .snippet-link {
+	border: 1px inset #6b6b6b;
+	border-width: 1px 0px;
+	display: block;
+	padding: 1em;
+}
+.snippet-list a.snippet-link:hover {
+	border-style: outset;
+	background: rgba(255, 255, 255, 0.19);
+}
+.snippet-list a.snippet-link:active {
+	border-style: solid;
+}
+.snippet-list a.snippet-link {
+	color: white;
+	text-decoration: none;
+}
+.snippet-list a.snippet-link.active {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+.delete-btn {
+	position: absolute;
+	top: 0; right: 0; bottom: 0;
+	font-size: 1.5em;
+	display: inline-flex;
+	align-items: center;
+	width: 2em;
+	justify-content: center;
+	text-decoration: none;
+	color: white;
+}
+.output {
+	padding: 0.5em;
+	font: normal 13px/27px monospace;
+	color: white;
+	background: #111;
+}
+.output .error {
+	color: red;
+}
+.footer {
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+	color: white;
+	font: normal 16px/27px 'Raleway';
+	background: rgba(0,0,0,0.5);
+	z-index: 10;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+.hidden {
+	display: none;
+}
+#info-btn {
+	z-index: 20;
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: white;
+	border: 2px solid #ccc;
+	border-radius: 100%;
+	font: normal 18px/1em 'Source Sans Pro';
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	text-align: center;
+	margin: 0.2em;
+}
