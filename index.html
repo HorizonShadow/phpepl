@@ -1,113 +1,45 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='UTF-8'>
-    <meta content='Mr. Joel Kemp' name='author'>
-    <meta content='A PHP read evaluate print loop (REPL) for executing PHP code online in the browser.' name='description'>
-    <meta content='PHP, repl, programming, read evaluate print loop, phpepl, online repl' name='keywords'>
-
-    <title>PHPepl: The PHP REPL</title>
-
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-    <link href='js/vendor/codemirror/lib/codemirror.css?ver=4.5' rel='stylesheet'>
-    <link href='css/styles.css?ver=1.10' rel='stylesheet'>
-    <script>
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-36055599-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-      (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.increment people.append people.track_charge".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
-      mixpanel.init("89e9d9cd5a49c0529bec222da9b37385");
-      mixpanel.track("Landing Page");
-    </script>
-  </head>
-  <body>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=803805852966575&version=v2.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
-    <!-- Built by Mr. Joel Kemp, @mrjoelkemp, www.mrjoelkemp.com -->
-    <!-- Yes, there's php -a, but it stinks. I really wanted a repl to play with particular parts of PHP. -->
-    <div class='container'>
-      <div class='header'>
-        <div class='title'>
-          <span class='code'>PHPepl: The PHP repl</span>
-          <a class="link-to-heroku" href="http://phpepl.herokuapp.com">Click for a PHP 5.5 version</a>
-          <a href='https://github.com/mrjoelkemp/phpepl'>
-            <img alt='Fork me on GitHub' src='https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png' style='position: absolute; top: 0; right: 0; border: 0;'>
-          </a>
-        </div>
-      </div>
-      <div class='codebox'>
-        <div class='codebox-cont'>
-          <div id='editor'></div>
-          <div class='output'>
-            <div class='spinner'>
-              <div class='bar1'></div>
-              <div class='bar2'></div>
-              <div class='bar3'></div>
-              <div class='bar4'></div>
-              <div class='bar5'></div>
-              <div class='bar6'></div>
-              <div class='bar7'></div>
-              <div class='bar8'></div>
-              <div class='bar9'></div>
-              <div class='bar10'></div>
-              <div class='bar11'></div>
-              <div class='bar12'></div>
-            </div>
-            <div class='output-container'>
-              <span></span>
-            </div>
-          </div>
-          <div class='timestamp'>
-            <span></span>
-          </div>
-        </div>
-      </div>
-      <div class='submit'>
-        <span class='code'>
-          <span class='shortcut'>⌘ + Enter</span> or <span class='shortcut'>Ctrl + Enter</span> to run code</span>
-      </div>
-      <div class='fork-info'>
-        <iframe src="github-btn.html?user=mrjoelkemp&amp;repo=phpepl&amp;type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="50px" height="20px"></iframe>
-        <span> the project for an unsandboxed experience </span>
-      </div>
-      <div class='credits'>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Try out some PHP in PHPepl: The PHP Repl" data-via="mrjoelkemp" data-hashtags="php">Tweet</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        <div class="fb-like" data-href="http://phpepl.herokuapp.com/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-      </div>
-
-    </div>
-    <div class='mixpanel'>
-      <a href='http://mixpanel.com/f/partner' style='display:none'>
-        <img alt='Real Time Web Analytics' src='http://mixpanel.com/site_media/images/partner/badge_blue.png'>
-      </a>
-    </div>
-  </body>
-  <script src='js/vendor/codemirror/lib/codemirror.js?ver=4.5'></script>
-  <script src='js/vendor/codemirror/addon/edit/closebrackets.js?ver=4.5'></script>
-  <script src='js/vendor/codemirror/addon/edit/matchbrackets.js?ver=4.5'></script>
-  <script src='js/vendor/codemirror/mode/htmlmixed/htmlmixed.js?ver=4.5'></script>
-  <script src='js/vendor/codemirror/mode/xml/xml.js?ver=4.5'></script>
-  <script src='js/vendor/codemirror/mode/javascript/javascript.js?ver=4.5'></script>
-  <script src='js/vendor/codemirror/mode/css/css.js?ver=4.5'></script>
-  <script src='js/vendor/codemirror/mode/clike/clike.js?ver=4.5'></script>
-  <script src='js/vendor/codemirror/mode/php/php.js?ver=4.5'></script>
-
-  <script src='dist/phpepl.js?ver=1.11'></script>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PHPEPL - FORK</title>
+	<link href='js/vendor/codemirror/lib/codemirror.css?ver=4.5' rel='stylesheet'>
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro|Lato|Raleway' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="js/vendor/codemirror/theme/monokai.css">
+	<link rel="stylesheet" type="text/css" href="css/better.css">
+</head>
+<body>
+<div class="wrapper">
+	<div class="snippets">
+		<a href="#" id="new-snip-btn">+</a>
+		<h3 class="current-snippet">Select Snippet</h3>
+		<input type="search" name="snip-search" id="snip-search" placeholder="type to filter snippets...">
+		<ul class="snippet-list">
+		</ul>
+	</div>
+	<div class="code">
+		<textarea id="editor"></textarea>
+		<div class="output">
+			<span>Press Ctrl+Enter to see output...</span>
+		</div>
+	</div>
+</div>
+<div class="footer hidden">
+	PHPEPL Tidy
+	<br>
+	A fork of the original PHPEPL built by Mr. Joel Kemp at https://github.com/mrjoelkemp/phpepl
+</div>
+<span id="info-btn">?</span>
+<script src='js/vendor/codemirror/lib/codemirror.js?ver=4.5'></script>
+<script src='js/vendor/codemirror/addon/edit/closebrackets.js?ver=4.5'></script>
+<script src='js/vendor/codemirror/addon/edit/matchbrackets.js?ver=4.5'></script>
+<script src='js/vendor/codemirror/mode/htmlmixed/htmlmixed.js?ver=4.5'></script>
+<script src='js/vendor/codemirror/mode/xml/xml.js?ver=4.5'></script>
+<script src='js/vendor/codemirror/mode/javascript/javascript.js?ver=4.5'></script>
+<script src='js/vendor/codemirror/mode/css/css.js?ver=4.5'></script>
+<script src='js/vendor/codemirror/mode/clike/clike.js?ver=4.5'></script>
+<script src='js/vendor/codemirror/mode/php/php.js?ver=4.5'></script>
+<script src="dist/modules.js"></script>
+<script src="dist/better.js"></script>
+</body>
 </html>
