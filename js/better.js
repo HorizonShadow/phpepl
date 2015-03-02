@@ -254,7 +254,17 @@ Snip.UI.createUI = function () {
 		Snip.UI.list(snip, index);
 		Snip.UI.open(index);
 	});
-	this.search = el.id('snip-search');
+	el.id('snip-search').addEventListener('keyup', function () {
+		[].forEach.call(els.tag('li', Snip.UI.snipList), function (li) {
+			if (!this.value.length) return li.classList.remove('hidden');
+			if (li.textContent.trim().toLowerCase().indexOf(this.value) !== -1) {
+				li.classList.add('hidden');
+			}
+			else {
+				li.classList.remove('hidden');
+			}
+		}, this);
+	});
 };
 
 Snip.UI.letUserRename = function (e) {
