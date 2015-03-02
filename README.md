@@ -7,7 +7,7 @@ This is a fork of the original PHPEPL made by Mr. Joel Kemp at https://github.co
 - Added Snippets support
     - Store multiple snippets in `localStorage` with proper names.
     - Navigate through them in the sidebar.
-    - Support to filter through snippets is a #TODO.
+    - Support to filter through snippets.
     - Double click name of the Snippet in the title bar to rename it.
 - A darker and nicer theme. Codemirror editor now uses the monokai theme.
 - Convenient code functions:
