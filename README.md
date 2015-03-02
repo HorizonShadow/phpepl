@@ -1,89 +1,41 @@
-THIS IS A FORK VERSION, AND IS A WIP
+#PHPEPL - Fork
+
+This is a fork of the original PHPEPL made by Mr. Joel Kemp at https://github.com/mrjoelkemp/phpepl.
+
+##The changes from the original version:
+
+- Added Snippets support
+    - Store multiple snippets in `localStorage` with proper names.
+    - Navigate through them in the sidebar.
+    - Support to filter through snippets is a #TODO.
+    - Double click name of the Snippet in the title bar to rename it.
+- A darker and nicer theme. Codemirror editor now uses the monokai theme.
+- Convenient code functions:
+	- Typing `>` in the last line of the code followed by any variables or literals, and omitting the `;` semicolon will wrap the statement in `var_dump`.
+	- So `> $x, 'foo', bar()` will be transferred to the eval script as `var_dump($x, 'foo', bar())`. Rest of the code will remain as it is.
+	- Omitting the semi-colon at the end is necessary (and convenient?). This is done to ensure only intended format of code is replaced.
+	- Replacement happens only on the last line.
+- Files are automatically saved, just use `Ctrl+Enter` to run code. No `Ctrl+S`.
+- Removed the timestamp thing.
+- Removed the spinner, can be re-enabled by un-commenting the respective lines.
+- Removed dependency on jQuery, added a small DOM module instead.
+- Removed moment.js dependency. It was used only for a little timestamp, which is removed. And the timestamp can done in lesser code without moment.js anyways.
+- Simplified code structure. Removed the build engine since there is a very small amount of code, and is fairly optimized already. The build engine was not minifying Codemirror's code anyways. Removal of jQuery and moment.js already speeds up page a lot.
+- Removed Vagrant, docker etc. Setting up and usage of the app is already pretty simple. Nginx config is included anyways.
+
+**Note: The eval script is the same.**
+
+##To use:
+
+Clone this repo to filesystem. Open the folder in terminal, make sure you have composer installed, and run `composer install`.
+Then start a server within the folder either with the inbuilt php server:
+```
+php -S localhost:<port>
+```
+Then point your browser to `http://localhost:<port>`. (Replacing port with whatever port you want to use). Or add `phpepl.local` to your `hosts` file (located in `/etc/`) and add the `phpepl.conf` nginx configuration to your nginx configuration folder, and restart nginx. Then access the app at `http://phpepl.local`.
+
+Happy PHPing ;-)
+
 ---
-    - awalGarg aka Rash
 
-# PHPepl [![npm](http://img.shields.io/npm/v/phpepl.svg)](https://npmjs.org/package/phpepl) [![npm](http://img.shields.io/npm/dm/phpepl.svg)](https://npmjs.org/package/phpepl)
-
-> The PHP Repl
-
-### Motivation
-
-I simply wanted an online repl that allowed me to play with *multiline* php scripts.
-There's already a console-based repl `php -a`, but it and many other
-console-based repls are not great for multiline snippets.
-
-Folks have even been using `src/eval/index.php` as a sandboxed, php eval script to power their own services. Pretty awesome!
-
-### Sandboxing
-
-The online version of PHPepl is sandboxed. The exposed `eval` is sandboxed at the server configuration layer
-plus some blacklisting of methods at the application level via [PHP-Sandbox](https://github.com/fieryprophet/php-sandbox).
-
-This has, of course, crippled the tool a bit – as you can't run code that has blacklisted methods.
-**For an unsandboxed experience, I recommend serving this app locally.**
-
-### Running it locally
-
-#### Vagrant
-
-If you use vagrant, you can `vagrant up` within the phpepl root. This will spawn a virtual machine serving phpepl
-at the `http://phpepl.dev` address.
-
-You can also do `vagrant plugin install vagrant-hostsupdater` if you need to fetch the hostname from `/etc/hosts` or another host file.
-
-#### Docker
-
-If you use Docker, you can run `./docker-bootstrap` to start a container that serves the app using PHP5 and Apache.
-
-To view the served app, visit the IP address of the host. Note, if you're using boot2docker, you need to visit the ip
-found via the `boot2dock ip` command.
-
-#### Manually
-
-To serve this application locally, you'll need any php-capable web server:
-
-* Mac: [MAMP](http://www.mamp.info/en/index.html)
-* Windows: [WAMP](http://www.wampserver.com/en/)
-* Or your own web server and php installation
-
-Grab the source code for phpepl: fork this repo, download the source as a zip, or install via npm `npm install phpepl`.
-
-You can then point your web server to serve files from the `phpepl/` root folder
-
-* Namely, you should be able to visit the index page (`phpepl/index.html`) from `http://localhost` (include a custom port if necessary)
- * Ex: `http://localhost:8000/index.html` or simply `http://localhost:8000`, assuming your server is configured to listen to port 8000.
-
-You'll then have free reign to execute any commands.
-
-### Contact Me
-
-If you hit any errors or if someone hacked the repl and it goes down, give
-me a shout on Twitter: [@mrjoelkemp](https://twitter.com/mrjoelkemp)
-
-Close to 100 people use this REPL every day; don't ruin it for them. Please play nice.
-
-### Contribute
-
-This app uses Browserify for bundling and Grunt for task running.
-
-If you'd like to tinker around with the code, you can do the following:
-
-* Clone the repo
-* `npm install` in the root directory
-* `grunt`
-* Point your browser to your localhost (assuming you have the app being [served locally](#running-it-locally))
-
-`src/phpepl.js` is the main script for the website. This gets built into `dist/phpepl.js`
-which is referenced by `phpepl/index.html`.
-
-The php evaluation code is in `src/eval/index.php`.
-
-That endpoint checks for the existence of a `PHPEPL_PROD` environment variable
-(which is set on the production hosts) for sandboxing. Locally, you won't
-have that set, so you'll have the unsandboxed version by default.
-
-* With grunt running, that change should rebuild the app and you can just refresh the page.
-
-### License
-
-MIT
+Credits to Mr. Joel Kemp (@mrjoelkemp) for the original PHP eval script.
