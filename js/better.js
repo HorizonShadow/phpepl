@@ -258,10 +258,10 @@ Snip.UI.createUI = function () {
 		[].forEach.call(els.tag('li', Snip.UI.snipList), function (li) {
 			if (!this.value.length) return li.classList.remove('hidden');
 			if (li.textContent.trim().toLowerCase().indexOf(this.value) !== -1) {
-				li.classList.add('hidden');
+				li.classList.remove('hidden');
 			}
 			else {
-				li.classList.remove('hidden');
+				li.classList.add('hidden');
 			}
 		}, this);
 	});
