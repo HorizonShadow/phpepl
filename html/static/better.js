@@ -13,7 +13,7 @@ var editor = window.CodeMirror.fromTextArea(document.getElementById("editor"), {
 function processCode () {
 	var err = el.cl('error-gutter'); if(err) err.classList.remove('error-gutter');
 	XHR({
-		url: '/src/eval/index.php',
+		url: 'eval.php',
 		method: 'POST',
 		data: {code: getNicerValue()},
 		onload: processResponse,
