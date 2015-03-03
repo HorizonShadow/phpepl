@@ -25,9 +25,27 @@
 	</div>
 </div>
 <div class="footer hidden">
-	PHPEPL Tidy
-	<br>
-	A fork of the original PHPEPL built by Mr. Joel Kemp at https://github.com/mrjoelkemp/phpepl
+	<h1 id="phpepl-fork">PHPEPL fork</h1>
+
+<p>A fork of the original PHPEPL built by Mr. Joel Kemp at <a href="https://github.com/mrjoelkemp/phpepl">https://github.com/mrjoelkemp/phpepl</a>.</p>
+
+<p>This version adds support for snippets, a slick GUI, and a convenience function which wraps things in <code>var_dump</code> for you at the last line, if the line starts with a <code>&gt;</code>. So…</p>
+
+<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-comment">// some code here</span>
+&gt; <span class="hljs-variable">$x</span>, <span class="hljs-variable">$y</span>, <span class="hljs-variable">$z</span></code></pre>
+
+<p>…will compile to</p>
+
+<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-comment">// some code here</span>
+var_dump(<span class="hljs-variable">$x</span>, <span class="hljs-variable">$y</span>, <span class="hljs-variable">$z</span>);</code></pre>
+
+<p>You must omit the semi-colon at the end. And it only works for the last line. Just a handy thing to have.</p>
+
+<p>Snippets are automatically saved in <code>localStorage</code>, you can filter the snippets too. Have fun! <br>
+Due credits to Mr. Joel Kemp for the original PHP Eval script.</p>
+
+<p>Made with &lt;3, JavaScript, and CSS3 (Flexbox for the layout), and 2 hours. <br>
+<a href="https://awalgarg.github.io/">Awal Garg aka Rash</a></p>
 </div>
 <span id="info-btn">?</span>
 <script src='js/vendor/codemirror/lib/codemirror.js?ver=4.5'></script>
