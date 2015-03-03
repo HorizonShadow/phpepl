@@ -24,19 +24,18 @@ function processCode () {
 function getNicerValue () {
 	// it will wrap lastLine in var_dump if it startsWith `>` followed by any space
 	// AND does not end with a semicolon
-	var actualValue = window.editor.getValue(),
-		lastLine = window.editor.getLine(window.editor.lastLine()).trim();
+	// also removes <?php and ?>
+	// if you use <? (short open tags), you suck anyways
+	var lines = window.editor.getValue().trim().replace(/^<\?php\s/, '').replace(/\?>$/, '').trim().split('\n'),
+		num = lines.length,
+		lastLine = lines[num - 1].trim();
 	
 	if (lastLine.startsWith('>') && !lastLine.endsWith(';')) {
 		// let us add var_dump!
-		var	lines = actualValue.split('\n'),
-			newLastLine = lastLine.replace(/^> */, 'var_dump(') + ');';
-		
-		lines[lines.length - 1] = newLastLine;
-		return lines.join('\n');
+		lines[num - 1] = lastLine.replace(/^>\s*/, 'var_dump(') + ');';
 	}
 
-	return actualValue;
+	return lines.join('\n');
 }
 
 var editorHelpers = {

@@ -16,8 +16,8 @@
 	header("Content-type: application/json");
 
 	// No need for the open and close php tags
-	$toRemove 	= array("<?php", "?>", "<?");
-	$code = str_replace($toRemove, "", $_POST['code']);
+/*	$toRemove 	= array("<?php", "?>", "<?");
+	$code = str_replace($toRemove, "", $_POST['code']); */
 
 	// Brilliant method for even catching fatal_errors
 	register_shutdown_function("on_script_finish");
