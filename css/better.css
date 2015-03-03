@@ -96,6 +96,7 @@ body {
 	font: normal 13px/27px monospace;
 	color: white;
 	background: #111;
+	overflow: auto;
 }
 .output .error {
 	color: red;
