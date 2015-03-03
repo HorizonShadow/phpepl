@@ -29,10 +29,11 @@ body {
 }
 .snippets {
 	position: relative;
-	min-width: 200px;
+	width: 200px;
 	background-color: rgb(45,45,45);
 	color: white;
 	font: bolder 13px/18px 'Lato', 'sans-serif';
+	overflow: auto;
 }
 .current-snippet {
 	text-align: center;
@@ -79,6 +80,12 @@ body {
 }
 .snippet-list a.snippet-link.active {
 	background-color: rgba(0, 0, 0, 0.2);
+}
+.snippets h3, .snippets .snippet-link {
+	max-width: 100%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	padding-right: 2em;
 }
 .delete-btn {
 	position: absolute;
