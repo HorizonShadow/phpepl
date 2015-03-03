@@ -7,7 +7,7 @@ This is a fork of the original PHPEPL made by Mr. Joel Kemp at https://github.co
 - Added Snippets support
     - Store multiple snippets in `localStorage` with proper names.
     - Navigate through them in the sidebar.
-    - Support to filter through snippets.
+    - Support to filter through snippets is a #TODO.
     - Double click name of the Snippet in the title bar to rename it.
 - A darker and nicer theme. Codemirror editor now uses the monokai theme.
 - Convenient code functions:
@@ -20,10 +20,11 @@ This is a fork of the original PHPEPL made by Mr. Joel Kemp at https://github.co
 - Removed the spinner, can be re-enabled by un-commenting the respective lines.
 - Removed dependency on jQuery, added a small DOM module instead.
 - Removed moment.js dependency. It was used only for a little timestamp, which is removed. And the timestamp can done in lesser code without moment.js anyways.
-- Simplified code structure. Removed the build engine since there is a very small amount of code, and is fairly optimized already. The build engine was not minifying Codemirror's code anyways. Removal of jQuery and moment.js already speeds up page a lot.
+- Simplified code and directory structure. Removed the build engine since there is a very small amount of code, and is fairly optimized already. The build engine was not minifying Codemirror's code anyways. Removal of jQuery and moment.js already speeds up page a lot.
 - Removed Vagrant, docker etc. Setting up and usage of the app is already pretty simple. Nginx config is included anyways.
 
-**Note: The eval script is the same.**
+~~**Note: The eval script is the same.**~~
+The original eval script replaced all instances of `<?php`, `<?`, and `?>` in your code with empty strings without verifying their positions. This is almost brutal :(. Now the front-end script does it, but only if the occurrence is at the beginning or end. Less brutal.
 
 ##To use:
 
@@ -32,7 +33,7 @@ Then start a server within the folder either with the inbuilt php server:
 ```
 php -S localhost:<port>
 ```
-Then point your browser to `http://localhost:<port>`. (Replacing port with whatever port you want to use). Or add `phpepl.local` to your `hosts` file (located in `/etc/`) and add the `phpepl.conf` nginx configuration to your nginx configuration folder, and restart nginx. Then access the app at `http://phpepl.local`.
+Then point your browser to `http://localhost:<port>`. (Replacing port with whatever port you want to use). Or add `phpepl.local` to your `hosts` file (located in `/etc/`) and add the `phpepl.conf` nginx configuration to your nginx configuration folder, and restart nginx. Then access the app at `http://phpepl.local`. Remember to replace the root path in the conf file with the place wherever you place the app.
 
 Happy PHPing ;-)
 
@@ -42,6 +43,6 @@ Credits to Mr. Joel Kemp (@mrjoelkemp) for the original PHP eval script.
 
 ###Screenshots
 
-![enter image description here](http://i.imgur.com/I9YTWX3.png "stuff")
+![stuff](http://i.imgur.com/I9YTWX3.png "stuff")
 
-![enter image description here](http://i.imgur.com/ttxC8nH.png "filtering on the sidebar")
+![filtering on the sidebar](http://i.imgur.com/ttxC8nH.png "filtering on the sidebar")
