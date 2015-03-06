@@ -5,6 +5,7 @@ body {
 	display: flex;
 	height: 100%;
 	min-height: 100vh;
+	max-height: 100vh; /*I suck at css?*/
 }
 .code {
 	flex-grow: 1;
@@ -30,6 +31,7 @@ body {
 .snippets {
 	position: relative;
 	width: 200px;
+	min-width: 180px;
 	background-color: rgb(45,45,45);
 	color: white;
 	font: bolder 13px/18px 'Lato', 'sans-serif';
@@ -104,6 +106,7 @@ body {
 	color: white;
 	background: #111;
 	overflow: auto;
+	max-height: 50vh;
 }
 .output .error {
 	color: red;
