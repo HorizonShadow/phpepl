@@ -22,11 +22,18 @@ function processCode () {
 }
 
 function getNicerValue () {
+	return parseCode(window.editor.getValue());
+}
+
+function parseCode (code, includeStack) {
 	// it will wrap lastLine in var_dump if it startsWith `>` followed by any space
 	// AND does not end with a semicolon
 	// also removes <?php and ?>
 	// if you use <? (short open tags), you suck anyways
-	var lines = window.editor.getValue().trim().replace(/^<\?php\s/, '').replace(/\?>$/, '').trim().split('\n'),
+	// and manage some pesky includes
+	if (!Array.isArray(includeStack)) includeStack = [];
+	var fileName = el.cl('current-snippet').textContent,
+		lines = code.trim().replace(/^<\?php\s/, '').replace(/\?>$/, '').trim().split('\n'),
 		num = lines.length,
 		lastLine = lines[num - 1].trim();
 	
@@ -35,7 +42,21 @@ function getNicerValue () {
 		lines[num - 1] = lastLine.replace(/^>\s*/, 'var_dump(') + ');';
 	}
 
-	return lines.join('\n');
+	code = lines.join('\n');
+
+	includeStack.push(fileName);
+	return code.replace(/^\/\*!include\s+(.+)\*\/$/m, function (match, include) {
+		if (includeStack.indexOf(include) !== -1) {
+			editorHelpers.setOutput('Detected Include-ception! Include stack: ' + JSON.stringify(includeStack.concat(include)), true);
+			throw Error ('Include ception!');
+		}
+		var snip = Snip.getSnipByName(include);
+		if (snip) {
+			includeStack.push(include);
+			return parseCode(snip.code, includeStack);
+		}
+		return '';
+	});
 }
 
 var editorHelpers = {
@@ -167,6 +188,14 @@ Snip.save = function (index, code) {
 
 Snip.getSnip = function (index) {
 	return Snip.DB.store.snips[index];
+};
+
+Snip.getSnipByName = function (name, all) {
+	var snips = Snip.DB.store.snips.filter(function (snip) {
+		return snip.name === name;
+	});
+	if (all) return snips;
+	return snips[0];
 };
 
 Snip.markToRemove = function (index) {

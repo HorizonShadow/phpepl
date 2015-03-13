@@ -14,6 +14,12 @@ This is a fork of the original PHPEPL made by Mr. Joel Kemp at https://github.co
 	- So `> $x, 'foo', bar()` will be transferred to the eval script as `var_dump($x, 'foo', bar())`. Rest of the code will remain as it is.
 	- Omitting the semi-colon at the end is necessary (and convenient?). This is done to ensure only intended format of code is replaced.
 	- Replacement happens only on the last line.
+- Include one snippet in another with custom comment like `/*!include <snippet name>*/`
+	- Snippet code will be parsed like above (including nested includes) before inclusion
+	- Inclusion is simply copying over of the code
+	- Looping includes will throw an `Include-ception` error
+	- Snippet names are case-sensitive
+	- There must not be any extra space anywhere in the custom comment
 - Files are automatically saved, just use `Ctrl+Enter` to run code. No `Ctrl+S`.
 - Removed the timestamp thing.
 - Removed the spinner, can be re-enabled by un-commenting the respective lines.
