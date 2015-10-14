@@ -1,7 +1,12 @@
 ;(function (window, document) {
+	var scrollbarStyles = Object.keys(CodeMirror.scrollbarModel);
+	var scrollbarStyle = 'native';
+	if(scrollbarStyles.indexOf('overlay') > -1) {
+		scrollbarStyle = 'overlay';
+	}
 	window.editor = window.CodeMirror.fromTextArea(document.getElementById("editor"), {
 		lineNumbers: true,
-		scrollbarStyle: "native",
+		scrollbarStyle: scrollbarStyle,
 		matchBrackets: true,
 		mode: 'text/x-php',
 		indentUnit: 2,
