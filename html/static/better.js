@@ -1,7 +1,7 @@
 ;(function (window, document) {
 	window.editor = window.CodeMirror.fromTextArea(document.getElementById("editor"), {
 		lineNumbers: true,
-		scrollbarStyle: "overlay",
+		scrollbarStyle: "native",
 		matchBrackets: true,
 		mode: 'text/x-php',
 		indentUnit: 2,
