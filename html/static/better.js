@@ -257,10 +257,7 @@
 	};
 	Snip.UI.listing = function (index) {
 		// get the li element which represents the snip for given index
-		return el('[data-snipindex="' + index + '"]', this.snipList);
-		// I know I should not use dynamic css selectors without escaping
-		// or better not use dynamic css selectors at all
-		// but fuck you
+		return el('[data-snipindex=' + index + ']', this.snipList);
 	};
 	Snip.UI.createUI = function () {
 		this.currSnip = el.cl('current-snippet');
