@@ -112,7 +112,7 @@
 		// get the li element which represents the snip for given index
 		return el('[data-snipindex=' + index + ']', this.snipList);
 	};
-	
+
 	Snip.UI.onEnter = function (e) {
 		if (e.keyCode === 13) {
 			Snip.rename.bind(this);
@@ -134,6 +134,14 @@
 		}
 	}
 
+	Snip.UI.onNewSnipClick = function (e) {
+		var snip = Snip.create('/* enter some code here! */'),
+			index = Snip.DB.get('snips').length-1;
+
+			Snip.UI.list(snip, index);
+			Snip.UI.open(index);
+	}
+
 	Snip.UI.createUI = function () {
 		this.currSnip = el.cl('current-snippet');
 		this.currSnip.addEventListener('dblclick', this.letUserRename);
@@ -141,12 +149,7 @@
 		this.currSnip.addEventListener('keydown', this.onEnter);
 		this.snipList = el.cl('snippet-list');
 		this.snipList.addEventListener('click', this.onSnipListClick);
-		el.id('new-snip-btn').addEventListener('click', function () {
-			var snip = Snip.create('/* enter some code here! */'),
-				index = Snip.DB.get('snips').length-1;
-			Snip.UI.list(snip, index);
-			Snip.UI.open(index);
-		});
+		el.id('new-snip-btn').addEventListener('click', this.onNewSnipClick);
 		el.id('snip-search').addEventListener('keyup', function () {
 			[].forEach.call(els.tag('li', Snip.UI.snipList), function (li) {
 				if (!this.value.length) return li.classList.remove('hidden');
