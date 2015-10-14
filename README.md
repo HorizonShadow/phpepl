@@ -2,6 +2,8 @@
 
 This is a fork of the original PHPEPL made by Mr. Joel Kemp at https://github.com/mrjoelkemp/phpepl.
 
+PHPEPL is an online REPL (Read, Edit, Print, Loop) for PHP scripting.
+
 ##The changes from the original version:
 
 - Added Snippets support
