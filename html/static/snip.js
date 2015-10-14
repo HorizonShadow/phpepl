@@ -112,6 +112,7 @@
 		// get the li element which represents the snip for given index
 		return el('[data-snipindex=' + index + ']', this.snipList);
 	};
+	
 	Snip.UI.onEnter = function (e) {
 		if (e.keyCode === 13) {
 			Snip.rename.bind(this);
@@ -119,23 +120,27 @@
 		}
 	};
 
+	Snip.UI.onSnipListClick = function (e) {
+		if (e.target.classList.contains('delete-btn')) {
+			var link = e.target.previousElementSibling;
+			Snip.markToRemove(Number(link.dataset.snipindex));
+			return link.parentNode.classList.add('hidden');
+		}
+		try {
+			Snip.UI.open(Number(e.target.dataset.snipindex));
+		}
+		catch (err) {
+			console.log("Error opening snippet.")
+		}
+	}
+
 	Snip.UI.createUI = function () {
 		this.currSnip = el.cl('current-snippet');
 		this.currSnip.addEventListener('dblclick', this.letUserRename);
 		this.currSnip.addEventListener('blur', Snip.rename);
 		this.currSnip.addEventListener('keydown', this.onEnter);
 		this.snipList = el.cl('snippet-list');
-		this.snipList.addEventListener('click', function (e) {
-			if (e.target.classList.contains('delete-btn')) {
-				var link = e.target.previousElementSibling;
-				Snip.markToRemove(Number(link.dataset.snipindex));
-				return link.parentNode.classList.add('hidden');
-			}
-			try {
-				Snip.UI.open(Number(e.target.dataset.snipindex));
-			}
-			catch (err) {}
-		});
+		this.snipList.addEventListener('click', this.onSnipListClick);
 		el.id('new-snip-btn').addEventListener('click', function () {
 			var snip = Snip.create('/* enter some code here! */'),
 				index = Snip.DB.get('snips').length-1;
