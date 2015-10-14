@@ -1,5 +1,4 @@
-/****SNIPPETS!!!! MUHAHAHAHAHAHAHA****/
-
+;(function(window, document) {
 	var Snip = {};
 	Snip.UI = {};
 	Snip.DB = new Store('Snippets');
@@ -161,3 +160,4 @@
 		this.contentEditable = true;
 		this.classList.add('editing');
 	};
+})(window, document);
