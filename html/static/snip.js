@@ -142,6 +142,19 @@
 			Snip.UI.open(index);
 	}
 
+	Snip.UI.onSearchKeyUp = function (e) {
+		[].forEach.call(els.tag('li', Snip.UI.snipList), function (li) {
+			if (!this.value.length) return li.classList.remove('hidden');
+			
+			if (li.textContent.trim().toLowerCase().indexOf(this.value) !== -1) {
+				li.classList.remove('hidden');
+			}
+			else {
+				li.classList.add('hidden');
+			}
+		}, this);
+	}
+
 	Snip.UI.createUI = function () {
 		this.currSnip = el.cl('current-snippet');
 		this.currSnip.addEventListener('dblclick', this.letUserRename);
@@ -150,17 +163,7 @@
 		this.snipList = el.cl('snippet-list');
 		this.snipList.addEventListener('click', this.onSnipListClick);
 		el.id('new-snip-btn').addEventListener('click', this.onNewSnipClick);
-		el.id('snip-search').addEventListener('keyup', function () {
-			[].forEach.call(els.tag('li', Snip.UI.snipList), function (li) {
-				if (!this.value.length) return li.classList.remove('hidden');
-				if (li.textContent.trim().toLowerCase().indexOf(this.value) !== -1) {
-					li.classList.remove('hidden');
-				}
-				else {
-					li.classList.add('hidden');
-				}
-			}, this);
-		});
+		el.id('snip-search').addEventListener('keyup', this.onSearchKeyUp);
 	};
 
 	Snip.UI.letUserRename = function (e) {
