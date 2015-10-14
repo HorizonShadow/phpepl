@@ -37,7 +37,7 @@
 			lines = code.trim().replace(/^<\?php\s/, '').replace(/\?>$/, '').trim().split('\n'),
 			num = lines.length,
 			lastLine = lines[num - 1].trim();
-		
+
 		if (lastLine.startsWith('>') && !lastLine.endsWith(';')) {
 			// let us add var_dump!
 			lines[num - 1] = lastLine.replace(/^>\s*/, 'var_dump(') + ');';
@@ -144,7 +144,6 @@
 		el.cl('footer').classList.toggle('hidden');
 	});
 
-	
 	window.addEventListener('load', Snip.UI.init.bind(Snip.UI));
 	window.addEventListener('beforeunload', function () {
 		Snip.save(Number(Snip.UI.currSnip.dataset.snipindex), window.editor.getValue());
