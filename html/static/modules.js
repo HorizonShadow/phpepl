@@ -1,7 +1,7 @@
 function setDefaults (on, def) {
 
 	Object.keys(def).forEach(function(key){
-		if (typeof on[key] === "undefined") {
+		if (on[key] === undefined) {
 			on[key] = def[key];
 		}
 	}, on);
