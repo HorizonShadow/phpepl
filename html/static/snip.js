@@ -112,16 +112,18 @@
 		// get the li element which represents the snip for given index
 		return el('[data-snipindex=' + index + ']', this.snipList);
 	};
+	Snip.UI.onEnter = function (e) {
+		if (e.keyCode === 13) {
+			Snip.rename.bind(this);
+			e.preventDefault();
+		}
+	};
+
 	Snip.UI.createUI = function () {
 		this.currSnip = el.cl('current-snippet');
 		this.currSnip.addEventListener('dblclick', this.letUserRename);
 		this.currSnip.addEventListener('blur', Snip.rename);
-		this.currSnip.addEventListener('keydown', function (e) {
-			if (e.keyCode === 13) {
-				Snip.rename.bind(this);
-				e.preventDefault();
-			}
-		});
+		this.currSnip.addEventListener('keydown', this.onEnter);
 		this.snipList = el.cl('snippet-list');
 		this.snipList.addEventListener('click', function (e) {
 			if (e.target.classList.contains('delete-btn')) {
