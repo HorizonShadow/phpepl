@@ -109,7 +109,7 @@ Snip.UI.list = function (snip, index) {
 };
 Snip.UI.listing = function (index) {
 	// get the li element which represents the snip for given index
-	return el('[data-snipindex=' + index + ']', this.snipList);
+	return el('[data-snipindex="' + index + '"]', this.snipList);
 };
 
 Snip.UI.onEnter = function (e) {
